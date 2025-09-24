@@ -1,10 +1,10 @@
 ### Part B: Syntax Description
-Problem Statement: Finding the Average
+#### Problem Statement: Finding the Average
 Given a set of numbers, how can we find their average?
 Example: Given the numbers [5, 8, 12, 4, 10], calculate the average.
-Develop pseudo code to solve the problem statement outlined in Step 1.
+#### Develop pseudo code to solve the problem statement outlined in Step 1.
 Use descriptive variable names and comments to enhance readability and understanding.
-Write a Backus-Naur Form (BNF) grammar to describe the syntax of the problem statement.
+#### Write a Backus-Naur Form (BNF) grammar to describe the syntax of the problem statement.
 Construct a parse tree based on the BNF grammar to visualize the syntactic structure of the problem.
 Examine the parse tree constructed in Step 4 to determine if the BNF grammar is ambiguous.
 Identify any areas where multiple interpretations are possible.
