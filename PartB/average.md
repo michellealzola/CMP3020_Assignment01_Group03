@@ -1,4 +1,8 @@
-### Part B: Syntax Description
+
+
+# Part B: Syntax Description
+## By Group 3, CMPP 3020 BSA, Fall 2025 - BTech
+### Michelle, Umaya, Altamish, Jazmin, Mihir, Nathan
 #### 1. Problem Statement: Finding the Average
 Given a set of numbers, how can we find their average?
 Example: Given the numbers [5, 8, 12, 4, 10], calculate the average.
