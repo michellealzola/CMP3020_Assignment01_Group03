@@ -39,7 +39,7 @@ END
 Construct a parse tree based on the BNF grammar to visualize the syntactic structure of the problem.
 
 ```
-program>	            --> begin <stmt_list> end
+program>	        --> begin <stmt_list> end
 
 <stmt_list>		    --> <stmt> | <stmt>; <stmt>
 
@@ -49,11 +49,11 @@ program>	            --> begin <stmt_list> end
 
 <for_stmt>		    --> for each <id> in <stmt_list> endfor
 
-<print_stmt>		    --> print <string> + <id>
+<print_stmt>		--> print <string> + <id>
 
-<expression>		    --> <expression> + <expression> | <expression> / <expression> | <id> | <list_literal> | <num>
+<expression>		--> <expression> + <expression> | <expression> / <expression> | <id> | <list_literal> | <num>
 
-<list_literal>		    --> [ <num_list> ]
+<list_literal>		--> [ <num_list> ]
 
 <num_list>		    --> <num> | <num>, <num_list>
 
