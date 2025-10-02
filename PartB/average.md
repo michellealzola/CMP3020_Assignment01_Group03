@@ -74,8 +74,40 @@ Provide examples or scenarios to illustrate potential ambiguities and their impl
 #### 5. Rewrite the BNF grammar using Extended Backus-Naur Form (EBNF) to enhance readability and expressiveness.
 
 Explain the benefits of using EBNF over traditional BNF, particularly in terms of readability and clarity.
+> The benefits of using EBNF over traditional BNF are that it improves the readability and clarity of the grammar
+rules by making them more concise and compact. This is achieved by using brackets to indicate repetitions, grouping, and 
+optional elements, which reduce the need for many rules, making it easier to follow along.
 
 Remove any ambiguity present in the BNF grammar through syntax modifications in the EBNF version.
+
+```
+program>	        --> begin <stmt_list> end
+
+<stmt_list>		    --> <stmt> {; <stmt>}
+
+<stmt>			    --> <assign> | <for_stmt> | <print_stmt>
+
+<assign>		    --> <id> = <expression>
+
+<for_stmt>		    --> for each <id> in <stmt_list> endfor
+
+<print_stmt>		--> print <string> + <id>
+
+<expression>		--> <term> {(+ | /) <term>}
+
+<term>              --> <id> | <list_literal> | <num>
+
+<list_literal>		--> "[" <num_list> "]"
+
+<num_list>		    --> <num> {, <num>}
+
+<num>               --> <digit> {<digit>}
+
+<digit>			    --> 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+
+<string>		    --> "The average of the list of numbers is"
+
+```
 
 #### 6. Use the EBNF grammar to reconstruct a parse tree, demonstrating how the revised syntax resolves any ambiguities present in the original BNF grammar.
 Analyze and compare the parse trees from Steps 4 and 7 to understand the impact of syntax modifications on the parse tree structure.
