@@ -135,6 +135,7 @@ Identify any areas where multiple interpretations are possible.
 Provide examples or scenarios to illustrate potential ambiguities and their implications.
 
 ### Scenario:  Concatenation of string with variable.
+----
 Given the <string> and <id> for a variable. We are intending a print to our command line using the variable and predefined stringed text.
 There may be an overload given the differences in operation if this is not addressed within the Lexical Anaylzer.
 
@@ -146,9 +147,11 @@ print("Some text" + variable)
 Where the variable may not be of string type, the print will catch and overload the method. However in modeling the BNF, we must determine the scenario in which text may be combined with an operation '+' such that the value from the <num> type is displayed to a user given the precondition of 'print()'.
 
 ### Scenario:  Addition Expression Equivocations 
+----
 Given the behaviour differences in addition logic. A challenged faced internally amongst our group when analyzing different average code submissions.
 
-Case 1
+
+**Case 1**
 Variation on variables sum and count given the syntax of the addition operation.
 
 ```
@@ -156,7 +159,7 @@ for each example_element in number list
     sum = sum + example_element
     count++
 ```
-Case 2
+**Case 2**
 Variation on variables sum and count given the syntax of the addition operation.
 
 ```
@@ -164,7 +167,7 @@ for each example_element in number list
     sum =+ example_element
     count = count + 1
 ```
-Case 3
+**Case 3**
 Variation on variables sum and count given the syntax of the addition operation.
 ```
 for each example_element in number list
