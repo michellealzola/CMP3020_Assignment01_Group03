@@ -2,14 +2,14 @@
 
 # Part B: Syntax Description
 ## By Group 3, CMPP 3020 BSA, Fall 2025 - BTech
-### Michelle, Umaya, Altamish, Jazmin, Mihir, Nathan
-#### 1. Problem Statement: Finding the Average
+### *Michelle, Umaya, Altamish, Jazmin, Mihir, Nathan*
+## 1. Problem Statement: Finding the Average
 
 Given a set of numbers, how can we find their average?
 
 Example: Given the numbers [5, 8, 12, 4, 10], calculate the average.
 
-#### 2. Develop pseudo code to solve the problem statement outlined in Step 1.
+## 2. Develop pseudo code to solve the problem statement outlined in Step 1.
 Use descriptive variable names and comments to enhance readability and understanding.
 ```
 BEGIN
@@ -35,43 +35,111 @@ END
 
 ```
 
-#### 3. Write a Backus-Naur Form (BNF) grammar to describe the syntax of the problem statement.
+## 3. Write a Backus-Naur Form (BNF) grammar to describe the syntax of the problem statement.
 Construct a parse tree based on the BNF grammar to visualize the syntactic structure of the problem.
 
+### BNF Rules For our Program
 ```
-program>	        --> begin <stmt_list> end
+<program>	 ::= begin <stmt_list> end
 
-<stmt_list>		    --> <stmt> | <stmt>; <stmt>
+<stmt_list>	::=	 <stmt> | <stmt>  ; <stmt>
 
-<stmt>			    --> <assign> | <for_stmt> | <print_stmt>
+<stmt> ::= <assign> | <for_stmt> | <print_stmt>
 
-<assign>		    --> <id> = <expression>
+<assign> ::= <id> '=' <expression>
 
-<for_stmt>		    --> for each <id> in <stmt_list> endfor
+<for_stmt> ::= for each <id> in <stmt_list> endfor
 
-<print_stmt>		--> print <string> + <id>
+<print_stmt> ::= print <string> + <id>
 
-<expression>		--> <expression> + <expression> | <expression> / <expression> | <id> | <list_literal> | <num>
+<expression> ::= <expression> + <expression> | <expression> / <expression> | <id> | <list_literal> | <num>
 
-<list_literal>		--> [ <num_list> ]
+<list_literal>	::= [ <num_list> ]
 
-<num_list>		    --> <num> | <num>, <num_list>
+<num_list>	::= <num> | <num>, <num_list>
 
-<num>			    --> 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+<num>	::= '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
 
-<string>		    --> "The average of the list of numbers is"
+<string> ::= "The average of the list of numbers is"
 
+```
+### BNF Parse Tree for Problem "Solving an average()"
+
+_Our goal is to contextually look at a submission for an average() function and evaluate if it's context would run using the langauge rules of Python._
+
+Using BNF, I would like to describe an average function with the input as a num_list[] defined as [5,3,2,6,7]. And we need to compute the average by taking the sum of each value, while also keeping a count of the list. 
+
+### Grammar: Translated from our Pseudo
+--- 
+
+```
+begin
+
+  numbers_list = [5,3,2,6,7];
+  sum = 0;
+  count = 0;
+  for each num in numbers_list
+    sum = sum + num;
+    count = count + 1;
+  endfor;
+  average = sum / count;
+  print "The average of the list of numbers is" + average
+end
+```
+
+Parse Tree: average() submission
+------
+```
+program
+└─ begin
+   └─ stmt_list
+      ├─ assign
+      │  ├─ id: numbers_list
+      │  └─ expression: list_literal
+      │     └─ num_list
+      │        ├─ 5
+      │        ├─ 3
+      │        ├─ 2
+      │        ├─ 6
+      │        └─ 7
+      ├─ assign
+      │  ├─ id: sum
+      │  └─ expression: 0
+      ├─ assign
+      │  ├─ id: count
+      │  └─ expression: 0
+      ├─ for_stmt
+      │  ├─ id: num
+      │  ├─ id: numbers_list
+      │  └─ stmt_list
+      │     ├─ assign
+      │     │  ├─ id: sum
+      │     │  └─ expression: sum + num
+      │     └─ assign
+      │        ├─ id: count
+      │        └─ expression: count + 1
+      ├─ assign
+      │  ├─ id: average
+      │  └─ expression: sum / count
+      └─ print_stmt
+         ├─ string: "The average of the list of numbers is"
+         └─ id: average
 ```
 
 
-#### 4. Examine the parse tree constructed in Step 4 to determine if the BNF grammar is ambiguous.
+## 4. Examine the parse tree constructed in Step 4 to determine if the BNF grammar is ambiguous.
 ![Example Parse Tree Embed PNG](example_parse_tree-PNG.png)
 ![Example Parse Tree Embed SVG](example_parse_tree-SVG.svg)
 Identify any areas where multiple interpretations are possible.
 
 Provide examples or scenarios to illustrate potential ambiguities and their implications.
 
-#### 5. Rewrite the BNF grammar using Extended Backus-Naur Form (EBNF) to enhance readability and expressiveness.
+Given the code for average(). It is possible to model the list using '[]' square brackets to strictly model a list. 
+
+Scenario 1: Strict Python would follow the '[#]' or '[#,#, n]' rule where the # is a nu
+
+
+## 5. Rewrite the BNF grammar using Extended Backus-Naur Form (EBNF) to enhance readability and expressiveness.
 
 Explain the benefits of using EBNF over traditional BNF, particularly in terms of readability and clarity.
 > The benefits of using EBNF over traditional BNF are that it improves the readability and clarity of the grammar
@@ -81,7 +149,7 @@ optional elements, which reduce the need for many rules, making it easier to fol
 Remove any ambiguity present in the BNF grammar through syntax modifications in the EBNF version.
 
 ```
-program>	        --> begin <stmt_list> end
+<program>	        --> begin <stmt_list> end
 
 <stmt_list>		    --> <stmt> {; <stmt>}
 
@@ -109,5 +177,5 @@ program>	        --> begin <stmt_list> end
 
 ```
 
-#### 6. Use the EBNF grammar to reconstruct a parse tree, demonstrating how the revised syntax resolves any ambiguities present in the original BNF grammar.
+## 6. Use the EBNF grammar to reconstruct a parse tree, demonstrating how the revised syntax resolves any ambiguities present in the original BNF grammar.
 Analyze and compare the parse trees from Steps 4 and 7 to understand the impact of syntax modifications on the parse tree structure.
