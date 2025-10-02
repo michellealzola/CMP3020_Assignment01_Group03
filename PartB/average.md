@@ -134,10 +134,45 @@ Identify any areas where multiple interpretations are possible.
 
 Provide examples or scenarios to illustrate potential ambiguities and their implications.
 
-Given the code for average(). It is possible to model the list using '[]' square brackets to strictly model a list. 
+###Scenario:  Concatenation of string with variable.
+Given the <string> and <id> for a variable. We are intending a print to our command line using the variable and predefined stringed text.
+There may be an overload given the differences in operation if this is not addressed within the Lexical Anaylzer.
 
-Scenario 1: Strict Python would follow the '[#]' or '[#,#, n]' rule where the # is a nu
+For example
+```
+print("Some text" + variable)
 
+```
+Where the variable may not be of string type, the print will catch and overload the method. However in modeling the BNF, we must determine the scenario in which text may be combined with an operation '+' such that the value from the <num> type is displayed to a user given the precondition of 'print()'.
+
+###Scenario:  Addition Expression Equivocations 
+Given the behaviour differences in addition logic. A challenged faced internally amongst our group when analyzing different average code submissions.
+
+Case 1
+Variation on variables sum and count given the syntax of the addition operation.
+
+```
+for each example_element in number list
+    sum = sum + example_element
+    count++
+```
+Case 2
+Variation on variables sum and count given the syntax of the addition operation.
+
+```
+for each example_element in number list
+    sum =+ example_element
+    count = count + 1
+```
+Case 3
+Variation on variables sum and count given the syntax of the addition operation.
+```
+for each example_element in number list
+    sum =+ example_element
+    count =+ 1
+```
+
+Depending on how the parse tree is determined, the evaluation order can yield different results if the strict operands for addition logic are not evaluated given the num + sum may be parsed differently which may implicate a different result. For example if the program had incorrectly read and example_element + (sum + example element) in a different order (right to left vs left to right). There may be a discrepency in evaluation given the variation of addition operations used in the cases[1,2,3] above. 
 
 ## 5. Rewrite the BNF grammar using Extended Backus-Naur Form (EBNF) to enhance readability and expressiveness.
 
