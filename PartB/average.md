@@ -38,20 +38,21 @@ END
 #### 3. Write a Backus-Naur Form (BNF) grammar to describe the syntax of the problem statement.
 Construct a parse tree based on the BNF grammar to visualize the syntactic structure of the problem.
 
+#### Grammar Rules
 ```
 <program>	        --> begin <stmt_list> end
 
 <stmt_list>		    --> <stmt> | <stmt>; <stmt>
 
-<stmt>			    --> <assign> | <for_stmt> | <print_stmt>
+<stmt>			    --> <assign> | <for_stmt> 'for' | <print_stmt> 'print'
 
 <assign>		    --> <id> = <expression>
 
-<for_stmt>		    --> for each <id> in <stmt_list> endfor
+<for_stmt>		    --> for each <id> in <stmt_list>
 
-<print_stmt>		--> print <string> + <id>
+<print_stmt>		--> print 'print' <expression>
 
-<expression>		--> <expression> + <expression> | <expression> / <expression> | <id> | <list_literal> | <num>
+<expression>		--> <expression> + <expression> | <expression> / <expression> | <id> | <list_literal> | <num> | <string>
 
 <list_literal>		--> [ <num_list> ]
 
@@ -64,6 +65,54 @@ Construct a parse tree based on the BNF grammar to visualize the syntactic struc
 <string>		    --> "The average of the list of numbers is"
 
 ```
+##### Program & Program Grammar: Translated from our Pseudo Code
+--- 
+
+###### Program: Average with comments
+
+```
+#Begin the program
+#Initate variables
+numbers_list = [5, 8, 12, 4, 10]
+sum = 0
+count = 0
+  
+#Declare for loop using 'num' to iterate each number in the list
+for num in numbers_list:
+    sum = sum + num
+    count = count + 1
+
+#Outside the scope of the loop, we are creating a variable and calculating.
+average = sum / count
+
+#Print the result
+print "The average of the list of numbers is" + average
+
+#End of our program
+```
+
+Note, comments denoted by # are just to explain the coders thinking when translating from Pseudo to Python and are not going to be parsed for the tree. It is simply to convey an understanding to a new reader to help build familiarity through our chosen Python language for this assignment.
+
+Suppose students have been asked to submit the assignment with no # comments:
+##### Python Code submitted to our program without comments
+```
+numbers_list = [5, 8, 12, 4, 10]
+sum = 0
+count = 0
+
+for num in numbers_list:
+    sum = sum + num
+    count = count + 1
+
+average = sum / count
+
+print "The average of the list of numbers is" + average
+
+```
+
+Parse Tree: based on the average program submission
+------
+![[parse_tree_bnf.pdf]]
 
 
 #### 4. Examine the parse tree constructed in Step 4 to determine if the BNF grammar is ambiguous.
