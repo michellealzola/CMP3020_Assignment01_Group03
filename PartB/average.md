@@ -40,7 +40,7 @@ Construct a parse tree based on the BNF grammar to visualize the syntactic struc
 
 #### Grammar Rules
 ```
-<program>	        --> begin <stmt_list> end
+<program>	        --> <stmt_list> 
 
 <stmt_list>		    --> <stmt> | <stmt>; <stmt>
 
