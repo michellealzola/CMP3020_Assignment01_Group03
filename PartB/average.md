@@ -39,7 +39,7 @@ END
 Construct a parse tree based on the BNF grammar to visualize the syntactic structure of the problem.
 
 ```
-program>	        --> begin <stmt_list> end
+<program>	        --> begin <stmt_list> end
 
 <stmt_list>		    --> <stmt> | <stmt>; <stmt>
 
@@ -56,6 +56,8 @@ program>	        --> begin <stmt_list> end
 <list_literal>		--> [ <num_list> ]
 
 <num_list>		    --> <num> | <num>, <num_list>
+
+<id>                --> number | numbers_list | sum | count | average
 
 <num>			    --> 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
 
