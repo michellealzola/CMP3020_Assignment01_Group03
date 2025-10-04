@@ -41,13 +41,13 @@ Construct a parse tree based on the BNF grammar to visualize the syntactic struc
 ```
 <program>	        --> begin <stmt_list> end
 
-<stmt_list>		    --> <stmt> | <stmt>; <stmt>
+<stmt_list>		    --> <stmt> | <stmt>, <stmt_list>
 
 <stmt>			    --> <assign> | <for_stmt> | <print_stmt>
 
 <assign>		    --> <id> = <expression>
 
-<for_stmt>		    --> for each <id> in <stmt_list> endfor
+<for_stmt>		    --> for each <id> in <num_list> : <stmt_list> endfor
 
 <print_stmt>		--> print <string> + <id>
 
