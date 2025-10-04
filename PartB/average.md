@@ -41,13 +41,13 @@ Construct a parse tree based on the BNF grammar to visualize the syntactic struc
 ```
 <program>	        --> begin <stmt_list> end
 
-<stmt_list>		    --> <stmt> | <stmt>, <stmt_list>
+<stmt_list>		    --> <stmt> | <stmt> <stmt_list>
 
 <stmt>			    --> <assign> | <for_stmt> | <print_stmt>
 
 <assign>		    --> <id> = <expression>
 
-<for_stmt>		    --> for each <id> in <list_literal> : <stmt_list> endfor
+<for_stmt>		    --> for each <id> in <expression> : <stmt_list> endfor
 
 <print_stmt>		--> print <string> + <id>
 
@@ -85,13 +85,13 @@ Remove any ambiguity present in the BNF grammar through syntax modifications in 
 ```
 program>	        --> begin <stmt_list> end
 
-<stmt_list>		    --> <stmt> {; <stmt>}
+<stmt_list>		    --> <stmt> {<stmt>}
 
 <stmt>			    --> <assign> | <for_stmt> | <print_stmt>
 
 <assign>		    --> <id> = <expression>
 
-<for_stmt>		    --> for each <id> in <stmt_list> endfor
+<for_stmt>		    --> for each <id> in <expression> : <stmt_list> endfor
 
 <print_stmt>		--> print <string> + <id>
 
@@ -106,6 +106,8 @@ program>	        --> begin <stmt_list> end
 <num>               --> <digit> {<digit>}
 
 <digit>			    --> 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+
+<id>                --> number | numbers_list | sum | count | average
 
 <string>		    --> "The average of the list of numbers is"
 
