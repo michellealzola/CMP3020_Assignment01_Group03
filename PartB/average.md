@@ -47,9 +47,9 @@ Construct a parse tree based on the BNF grammar to visualize the syntactic struc
 
 <assign>		    --> <id> = <expression>
 
-<for_stmt>		    --> for each <id> in <num_list> : <stmt_list> endfor
+<for_stmt>		    --> for each <id> in <list_literal> : <stmt_list> endfor
 
-<print_stmt>		--> print "<string>"
+<print_stmt>		--> print <string> + <id>
 
 <expression>		--> <expression> + <expression> | <expression> / <expression> | <id> | <list_literal> | <num>
 
