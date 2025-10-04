@@ -112,8 +112,7 @@ print "The average of the list of numbers is" + average
 
 Parse Tree: based on the average program submission
 ------
-![[parse_tree_bnf.pdf]]
-
+![Parse Tree based on BNF Grammar of Pseudocode PNG](BNFparseTree_Group3BSA_CMPP3020.png)
 
 #### 4. Examine the parse tree constructed in Step 4 to determine if the BNF grammar is ambiguous.
 ![Example Parse Tree Embed PNG](example_parse_tree-PNG.png)
