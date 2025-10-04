@@ -2,14 +2,15 @@
 
 # Part B: Syntax Description
 ## By Group 3, CMPP 3020 BSA, Fall 2025 - BTech
-### Michelle, Umaya, Altamish, Jazmin, Mihir, Nathan
-#### 1. Problem Statement: Finding the Average
+#### Michelle, Umaya, Altamish, Jazmin, Mihir, Nathan
+
+## 1. Problem Statement: Finding the Average
 
 Given a set of numbers, how can we find their average?
 
 Example: Given the numbers [5, 8, 12, 4, 10], calculate the average.
 
-#### 2. Develop pseudo code to solve the problem statement outlined in Step 1.
+## 2. Develop pseudo code to solve the problem statement outlined in Step 1.
 Use descriptive variable names and comments to enhance readability and understanding.
 ```
 BEGIN
@@ -35,7 +36,7 @@ END
 
 ```
 
-#### 3. Write a Backus-Naur Form (BNF) grammar to describe the syntax of the problem statement.
+## 3. Write a Backus-Naur Form (BNF) grammar to describe the syntax of the problem statement.
 Construct a parse tree based on the BNF grammar to visualize the syntactic structure of the problem.
 
 ### Grammar Rules For our Program
@@ -124,7 +125,7 @@ Given further analysis of the problem, here is a parse tree which follows the BN
 ![BNF Parse Tree created for Group 3](BNFparseTree_Group3BSA_CMPP3020_V3.png)
 
 
-#### 4. Examine the parse tree constructed in Step 4 to determine if the BNF grammar is ambiguous.
+## 4. Examine the parse tree constructed in Step 4 to determine if the BNF grammar is ambiguous.
 Identify any areas where multiple interpretations are possible.
 Provide examples or scenarios to illustrate potential ambiguities and their implications.
 
@@ -171,7 +172,7 @@ for each example_element in number list
 
 Depending on how the parse tree is determined, the evaluation order can yield different results if the strict operands for addition logic are not evaluated given the num + sum may be parsed differently which may implicate a different result. For example if the program had incorrectly read and example_element + (sum + example element) in a different order (right to left vs left to right). There may be a discrepancy in evaluation given the variation of addition operations used in the cases[1,2,3] above. 
 
-#### 5. Rewrite the BNF grammar using Extended Backus-Naur Form (EBNF) to enhance readability and expressiveness.
+## 5. Rewrite the BNF grammar using Extended Backus-Naur Form (EBNF) to enhance readability and expressiveness.
 
 Explain the benefits of using EBNF over traditional BNF, particularly in terms of readability and clarity.
 > The benefits of using EBNF over traditional BNF are that it improves the readability and clarity of the grammar
@@ -211,5 +212,5 @@ program>	        --> begin <stmt_list> end
 
 ```
 
-#### 6. Use the EBNF grammar to reconstruct a parse tree, demonstrating how the revised syntax resolves any ambiguities present in the original BNF grammar.
+## 6. Use the EBNF grammar to reconstruct a parse tree, demonstrating how the revised syntax resolves any ambiguities present in the original BNF grammar.
 Analyze and compare the parse trees from Steps 4 and 7 to understand the impact of syntax modifications on the parse tree structure.
