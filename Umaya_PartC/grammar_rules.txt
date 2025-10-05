@@ -1,0 +1,10 @@
+<program> begin_KEYWORD <stmt_list> end_KEYWORD
+<stmt_list> <stmt> DELIMITER( <stmt> DELIMITER)*
+<stmt> <assign>|<for_stmt>|<print_stmt>
+<assign> ID ASSIGN_OP <expression>
+<expression> <term>( (ARITHMETIC_OP <term>))*
+<term> ID|<list_literal>|NUM
+<print_stmt> print_KEYWORD STRING ARITHMETIC_OP ID
+<for_stmt> for_KEYWORD each_KEYWORD ID in_KEYWORD <term> COLON_OP (<assign>)+ endfor_KEYWORD
+<list_literal> L_BRACKET <num_list> R_BRACKET
+<num_list> NUM( (SEPARATOR NUM))*
