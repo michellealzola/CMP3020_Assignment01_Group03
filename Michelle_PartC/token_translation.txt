@@ -1,0 +1,24 @@
+KEYWORD|Keyword|Language reserved word
+BUILTIN|Built-in Function|Built-in name
+IDENT|Identifier|Name of variable/function
+NUMBER|Numeric Literal|Integer/float constant
+STRING|String Literal|Quoted text
+ASSIGN|Assignment Operator|Assigns a value
+AUGASSIGN|Augmented Assignment|Op-and-assign (e.g., -=)
+EQEQ|Relational Operator|Equality (==)
+NEQ|Relational Operator|Not-equal (!=)
+LE|Relational Operator|Less-or-equal (<=)
+GE|Relational Operator|Greater-or-equal (>=)
+LT|Relational Operator|Less-than (<)
+GT|Relational Operator|Greater-than (>)
+PLUS|Addition Operator|Adds
+MINUS|Subtraction Operator|Subtracts
+STAR|Multiplication Operator|Multiplies
+SLASH|Division Operator|Divides
+LPAREN|Delimiter|Opening parenthesis
+RPAREN|Delimiter|Closing parenthesis
+LBRACK|Delimiter|Opening bracket
+RBRACK|Delimiter|Closing bracket
+COMMA|Separator|Separates items/args
+COLON|Delimiter|Block/colon
+NEWLINE|Delimiter|Line break

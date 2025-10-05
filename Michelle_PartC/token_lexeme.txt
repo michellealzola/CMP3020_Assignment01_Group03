@@ -1,0 +1,28 @@
+# name=regex
+STRING=(?:[fF]?)'(?:[^'\\\n]|\\.)*'|(?:[fF]?)"(?:[^"\\\n]|\\.)*"
+BADSEQ=\)\)
+KEYWORD=\b(?:{KEYWORDS})\b
+BUILTIN=\b(?:{BUILTIN})\b
+NUMBER=\d+(?:\.\d+)?
+IDENT=[A-Za-z_]\w*
+AUGASSIGN=(?:\+=|-=|\*=|/=)
+EQEQ==
+NEQ=!=
+LE=<=
+GE=>=
+ASSIGN==
+LT=<
+GT=>
+PLUS=\+
+MINUS=-
+STAR=\*
+SLASH=/
+LBRACK=\[
+RBRACK=\]
+LPAREN=\(
+RPAREN=\)
+COMMA=,
+COLON=:
+NEWLINE=\n
+SKIP=[ \t]+
+MISMATCH=.
