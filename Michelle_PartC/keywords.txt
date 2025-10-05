@@ -1,17 +1,6 @@
-def
 if
 else
-elif
-return
-while
 for
 in
-and
-or
-not
-True
-False
-None
 endfor
 endif
-print

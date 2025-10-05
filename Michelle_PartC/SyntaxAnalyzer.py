@@ -143,8 +143,12 @@ class SyntaxAnalyzer:
     # Assignment ::= Identifier "=" Expression
     def parse_assign(self) -> None:
         self._expect('IDENT')
-        self._expect('ASSIGN')
-        self.parse_expr()
+        if self._accept('ASSIGN') or self._accept('AUGASSIGN'):
+            self.parse_expr()
+            return
+        token, value = self._peek()
+        raise ParseError(f'Unexpected ASSIGN or AUGASSIGN, got {value or token!r}')
+
 
     # PrintStatement   ::= "print" "(" [ ArgumentList ] ")"
     # ArgumentList     ::= Expression { "," Expression }
@@ -170,7 +174,7 @@ class SyntaxAnalyzer:
             raise ParseError('Expected "in"')
         self.i += 1  # eats 'in'
 
-        self.parse_list_literal()
+        self.parse_expr()
         self._expect('COLON')
         self._expect('NEWLINE')
         self._skip_newlines()
@@ -224,6 +228,22 @@ class SyntaxAnalyzer:
     #                    | String
     #                    | "(" Expression ")"
     def parse_expr(self) -> None:
+        self.parse_conditional()
+
+    def parse_conditional(self) -> None:
+        self.parse_comparison()
+        if self._accept_keyword('if'):
+            self.parse_comparison()
+            self._expect_keyword('else')
+            self.parse_conditional()
+
+    def parse_comparison(self) -> None:
+        self.parse_additive()
+        while self._peek()[0] in ('EQEQ', 'NEQ', 'LT', 'LE', 'GT', 'GE'):
+            self.i += 1 # eats comparison operator
+            self.parse_additive()
+
+    def parse_additive(self) -> None:
         self.parse_term()
         while self._accept('PLUS') or self._accept('MINUS'):
             self.parse_term()
@@ -235,12 +255,34 @@ class SyntaxAnalyzer:
 
     def parse_factor(self) -> None:
         token, _ = self._peek()
+        if token in ('IDENT', 'BUILTIN') and self._peek(1)[0] == 'LPAREN':
+                self.parse_call()
+                return
+
         if token in ('NUMBER', 'STRING', 'IDENT'):
             self.i += 1
             return
+
+        if token == 'LBRACK':
+            self.parse_list_literal()
+            return
+
         if self._accept('LPAREN'):
             self.parse_expr()
             self._expect('RPAREN')
             return
+
         raise ParseError(f'Unexpected factor: {token!r}')
 
+    def parse_call(self) -> None:
+        if self._peek()[0] not in ('IDENT', 'BUILTIN'):
+            got, val = self._peek()
+            raise ParseError(f'Unexpected function name, got {val or got!r}')
+        self.i += 1 # eats name
+
+        self._expect('LPAREN')
+        if self._peek()[0] != 'RPAREN':
+            self.parse_expr()
+            while self._accept('COMMA'):
+                self.parse_expr()
+        self._expect('RPAREN')

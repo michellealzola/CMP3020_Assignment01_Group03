@@ -8,10 +8,11 @@ TokenRow = Tuple[str, str, str]
 class LexicalAnalyzer:
     def __init__(
             self,
+            keyword_path: str = 'keywords.txt',
+            builtin_path: str = 'builtin.txt',
             token_lexeme_path: str = 'token_lexeme.txt',
             token_translation_path: str = 'token_translation.txt',
-            keyword_path: str = 'keywords.txt',
-            builtin_path: str = 'builtin.txt'
+
         ):
         self.token_lexeme_path = Path(token_lexeme_path)
         self.token_translation_path = Path(token_translation_path)
@@ -24,10 +25,12 @@ class LexicalAnalyzer:
     # ---Line helper---
     # Returns only useful lines (not blank, not comments - starting with #, no leading or trailing spaces)
     def _load_lines(self, path: Path) -> List[str]:
-        return [
-            line.strip() for line in path.read_text(encoding='utf-8').splitlines()
-            if line.strip() and not line.strip().startswith('#')
-        ]
+        lines: List[str] = []
+        for raw in path.read_text(encoding='utf-8').splitlines():
+            line = raw.split('#', 1)[0].strip()
+            if line:
+                lines.append(line)
+        return lines
 
     # ---Reads token_translation.txt---
     # from

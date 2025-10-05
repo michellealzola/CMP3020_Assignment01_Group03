@@ -1,28 +1,41 @@
-# name=regex
+# Token definitions for Serpent+ language
+# Format: NAME=regex
+
+# --- Literals ---
 STRING=(?:[fF]?)'(?:[^'\\\n]|\\.)*'|(?:[fF]?)"(?:[^"\\\n]|\\.)*"
-BADSEQ=\)\)
+NUMBER=\d+(?:\.\d+)?
+
+# --- Keywords and identifiers (KEYWORD/BUILTIN must come before IDENT) ---
 KEYWORD=\b(?:{KEYWORDS})\b
 BUILTIN=\b(?:{BUILTIN})\b
-NUMBER=\d+(?:\.\d+)?
 IDENT=[A-Za-z_]\w*
+
+# --- Operators (longer first) ---
 AUGASSIGN=(?:\+=|-=|\*=|/=)
-EQEQ==
+EQEQ===        # <-- three '=' so pattern is '=='
 NEQ=!=
 LE=<=
 GE=>=
-ASSIGN==
+ASSIGN==       # pattern '=' after the split
 LT=<
 GT=>
 PLUS=\+
 MINUS=-
 STAR=\*
 SLASH=/
+
+# --- Delimiters ---
 LBRACK=\[
 RBRACK=\]
 LPAREN=\(
 RPAREN=\)
-COMMA=,
 COLON=:
+COMMA=,
+
+# --- Line and whitespace ---
 NEWLINE=\n
 SKIP=[ \t]+
+
+# --- Error and invalid sequence catch ---
+BADSEQ=\)\)
 MISMATCH=.
