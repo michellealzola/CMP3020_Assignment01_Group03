@@ -1,0 +1,4 @@
+# Block terminators for Serpent+
+if=endif
+else=endif
+for=endfor

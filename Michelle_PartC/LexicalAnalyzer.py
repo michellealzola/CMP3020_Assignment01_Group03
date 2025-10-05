@@ -86,7 +86,7 @@ class LexicalAnalyzer:
             if token_type in ('SKIP', 'NEWLINE'):
                 if token_type == 'NEWLINE':
                     tokens.append(('NEWLINE', '\\n'))
-                    continue  # ignored SKIP (whitespace) tokens; only preserve NEWLINE
+                continue  # ignored SKIP (whitespace) tokens; only preserve NEWLINE
 
             if token_type in ('BADSEQ', 'MISMATCH'):
                 errors.append(f'Error, {lexeme!r} is not a valid token')
