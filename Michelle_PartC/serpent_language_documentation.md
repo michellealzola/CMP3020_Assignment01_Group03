@@ -88,6 +88,7 @@ Currently supported:
 
 ```
 endfor
+endif
 ```
 
 ---
@@ -99,30 +100,38 @@ The Serpent+ language syntax is defined using **Extended Backus–Naur Form (EBN
 ### **3.1 Grammar Overview**
 
 ```
-Program        ::= StatementList
-StatementList  ::= (Statement NEWLINE*)*
-Statement      ::= Assignment
-                 | PrintStatement
-                 | IfStatement
-                 | ForStatement
+Program          ::= StatementList
 
-Assignment     ::= Identifier "=" Expression
+StatementList    ::= { Statement [ NEWLINE ] }
 
-PrintStatement ::= "print" "(" [ ArgumentList ] ")"
-ArgumentList   ::= Expression { "," Expression }
+Statement        ::= Assignment
+                   | PrintStatement
+                   | IfStatement
+                   | ForStatement
 
-IfStatement    ::= "if" Expression ":" NEWLINE INDENT StatementList DEDENT
-                   [ "else" ":" NEWLINE INDENT StatementList DEDENT ]
+Assignment       ::= Identifier "=" Expression
 
-ForStatement   ::= "for" Identifier "in" ListLiteral ":" NEWLINE
-                   INDENT StatementList DEDENT
-                   "endfor"
+PrintStatement   ::= "print" "(" [ ArgumentList ] ")"
+ArgumentList     ::= Expression { "," Expression }
 
-ListLiteral    ::= "[" [ Number { "," Number } ] "]"
+IfStatement      ::= "if" Expression ":" NEWLINE
+                     StatementList
+                     [ "else" ":" NEWLINE
+                       StatementList ]
+                     "endif"
 
-Expression     ::= Term { ("+" | "-") Term }
-Term           ::= Factor { ("*" | "/") Factor }
-Factor         ::= Number | Identifier | String | "(" Expression ")"
+ForStatement     ::= "for" Identifier "in" ListLiteral ":" NEWLINE
+                     StatementList
+                     "endfor"
+
+ListLiteral      ::= "[" [ Number { "," Number } ] "]"
+
+Expression       ::= Term { ("+" | "-") Term }
+Term             ::= Factor { ("*" | "/") Factor }
+Factor           ::= Number
+                   | Identifier
+                   | String
+                   | "(" Expression ")"
 ```
 
 ---
@@ -167,6 +176,117 @@ Unlike Python, Serpent+ requires an explicit **`endfor`** to close the loop.
 for variable in list:
     # statements
 endfor
+```
+
+### **4.2 Block Structure**
+
+#### **4.2.1 General**
+
+A *block* is a sequence of one or more statements introduced by a header that ends with a colon (`:`).
+In **Serpent+**, the block structure is determined by **explicit terminators**, not by indentation or dedentation.
+
+* **Indentation** is used only for readability and to promote consistent visual structure.
+* **Dedentation**—that is, a reduction in indentation—is **not** interpreted as the end of a block.
+* The structural boundaries of a block are defined solely by the appropriate **terminator keyword**.
+
+The following terminators are recognized in version 0.1:
+
+| Block Type  | Opening Keyword | Terminator |
+| ----------- | --------------- | ---------- |
+| For Loop    | `for`           | `endfor`   |
+| Conditional | `if` / `else`   | `endif`    |
+
+Future versions of Serpent+ may introduce additional explicit terminators such as `endwhile` and `endfunc`.
+
+#### **4.2.2 For Blocks**
+
+A `for` block begins with a `for` statement ending in a colon (`:`) and terminates explicitly with the keyword `endfor`.
+
+**Syntax**
+
+```serpent+
+for <identifier> in <list>:
+    <statements>
+endfor
+```
+
+**Semantics**
+
+1. The statements between `for` and `endfor` constitute the loop body.
+2. The parser determines the end of the block by locating the matching `endfor`.
+   Indentation has no effect on this determination.
+3. Nested `for` blocks require nested `endfor` terminators. Each `endfor` closes the most recent unmatched `for`.
+4. Inconsistent indentation inside the block does not alter program structure but may produce a style warning.
+
+**Diagnostics**
+
+* `Missing 'endfor'`
+* `Stray 'endfor' (no matching 'for')`
+* `Inconsistent indentation within 'for' block'` *(style warning)*
+
+**Example**
+
+```serpent+
+for n in [1, 2, 3]:
+    print(n)
+endfor
+```
+
+#### **4.2.3 If / Else Blocks**
+
+An `if` block and its optional `else` block are terminated by a single `endif` keyword.
+
+**Syntax**
+
+```serpent+
+if <expression>:
+    <then-statements>
+[else:
+    <else-statements>]
+endif
+```
+
+**Semantics**
+
+1. The `endif` keyword closes both the `if` and `else` blocks.
+2. The parser uses `endif` —not dedentation—to determine block termination.
+3. Indentation is recommended for clarity but is not part of the syntactic structure.
+
+**Diagnostics**
+
+* `Missing 'endif'`
+* `Dangling 'else' (no matching 'if')`
+* `Multiple 'else' for same 'if'`
+
+**Example**
+
+```serpent+
+if len(list) != 0:
+    print("List is not empty.")
+else:
+    print("List is empty.")
+endif
+```
+
+---
+
+### **4.2.4 Style Recommendations**
+
+Although indentation has no structural significance in Serpent+, programmers are strongly encouraged to:
+
+1. Indent each nested block consistently (e.g., four spaces).
+2. Align each terminator (`endfor`, `endif`) vertically with its corresponding opening statement.
+3. Avoid mixing tabs and spaces within the same file.
+
+These conventions improve readability and help prevent logical errors even though the compiler does not rely on dedentation.
+
+
+
+```
+for <id> in <list> : 
+    <statements>
+endfor
+
 ```
 
 ---
