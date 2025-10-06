@@ -1,4 +1,7 @@
 from __future__ import annotations
+
+import sys
+
 from typing import List, Tuple, Optional
 from pathlib import Path
 
@@ -43,10 +46,8 @@ TABLE_LABELS = ['Lexeme', 'Token', 'Explanation']
 
 # to make file-relative paths
 def _here() -> Path:  # returns a pathlib.path
-    try:
-        return Path(__file__).resolve().parent
-    except NameError:
-        return Path.cwd()
+    base = getattr(sys, '_MEIPASS', None)
+    return Path(base) if base else Path(__file__).parent.resolve()
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -191,8 +192,14 @@ class MainWindow(QMainWindow):
         src = self.edit_code.toPlainText()
 
         # Lexical Analysis
+        base = _here()
         try:
-            lexer = LexicalAnalyzer()
+            lexer = LexicalAnalyzer(
+                keyword_path=str(base / 'keywords.txt'),
+                builtin_path=str(base / 'builtin.txt'),
+                token_lexeme_path=str(base / 'token_lexeme.txt'),
+                token_translation_path=str(base / 'token_translation.txt'),
+            )
         except Exception as e:
             self._show_error(
                 'Failed to initialize LexicalAnalyzer.\n'
@@ -223,7 +230,10 @@ class MainWindow(QMainWindow):
 
         # Syntax Analysis
         try:
-            syn = SyntaxAnalyzer(tokens)
+            syn = SyntaxAnalyzer(
+                tokens,
+                block_termination_path=str(base / 'block_termination.txt'),
+            )
             syn.parse_program()
             self._set_status('Syntax analysis complete.', ok=True)
             self.edit_code.setExtraSelections([])
@@ -306,7 +316,6 @@ class MainWindow(QMainWindow):
 
 
 if __name__ == '__main__':
-    import sys
 
     app = QApplication(sys.argv)
     window = MainWindow()
