@@ -5,7 +5,9 @@ from pathlib import Path
 Token = Tuple[str, str]  # (token_type, lexeme)
 
 class ParseError(Exception):
-    pass
+    def __init__(self, message: str, line: int):
+        super().__init__(f'Line {line}: {message}')
+        self.line = line
 
 class SyntaxAnalyzer:
     def __init__(self, tokens: List[Token], block_termination_path: str = 'block_termination.txt'):
@@ -55,7 +57,7 @@ class SyntaxAnalyzer:
         if self._accept(token_type):
             return self.tokens[self.i - 1]
         got_token, got_value = self._peek()
-        raise ParseError(f"Expected {token_type}, got {got_value or got_token!r}")
+        self._err(f'Expected {token_type}, got {got_value or got_token!r}')
 
     # ---Keyword Helpers---
     def _accept_keyword(self, keyword: str) -> bool:
@@ -68,7 +70,7 @@ class SyntaxAnalyzer:
     def _expect_keyword(self, keyword: str) -> None:
         if not self._accept_keyword(keyword):
             got_token, got_value = self._peek()
-            raise ParseError(f"Expected {keyword!r}, got {got_value or got_token!r}")
+            self._err(f'Expected {keyword!r}, got {got_value or got_token!r}')
 
     # ---Skips over NEWLINE tokens---
     def _skip_newlines(self) -> None:
@@ -136,9 +138,9 @@ class SyntaxAnalyzer:
                 self.parse_if_block()
                 return
 
-            raise ParseError(f'Unexpected keyword: {value!r}')
+            self._err(f'Unexpected keyword: {value!r}')
 
-        raise ParseError(f'Unexpected token: {token!r}')
+        self._err(f'Unexpected token: {token!r}')
 
     # Assignment ::= Identifier "=" Expression
     def parse_assign(self) -> None:
@@ -147,14 +149,14 @@ class SyntaxAnalyzer:
             self.parse_expr()
             return
         token, value = self._peek()
-        raise ParseError(f'Unexpected ASSIGN or AUGASSIGN, got {value or token!r}')
+        self._err(f'Unexpected ASSIGN or AUGASSIGN, got {value or token!r}')
 
 
     # PrintStatement   ::= "print" "(" [ ArgumentList ] ")"
     # ArgumentList     ::= Expression { "," Expression }
     def parse_print(self) -> None:
         if not (self._accept('KEYWORD') or self._accept('BUILTIN')):
-            raise ParseError('Expected "print"')
+            self._err('Expected "print"')
         self._expect('LPAREN')
         if self._peek()[0] != 'RPAREN':
             self.parse_expr()
@@ -171,7 +173,7 @@ class SyntaxAnalyzer:
 
         # 'in'
         if not (self._peek()[0] == 'KEYWORD' and self._peek()[1] == 'in'):
-            raise ParseError('Expected "in"')
+            self._err('Expected "in"')
         self.i += 1  # eats 'in'
 
         self.parse_expr()
@@ -272,12 +274,12 @@ class SyntaxAnalyzer:
             self._expect('RPAREN')
             return
 
-        raise ParseError(f'Unexpected factor: {token!r}')
+        self._err(f'Unexpected factor: {token!r}')
 
     def parse_call(self) -> None:
         if self._peek()[0] not in ('IDENT', 'BUILTIN'):
             got, val = self._peek()
-            raise ParseError(f'Unexpected function name, got {val or got!r}')
+            self._err(f'Unexpected function name, got {val or got!r}')
         self.i += 1 # eats name
 
         self._expect('LPAREN')
@@ -286,3 +288,10 @@ class SyntaxAnalyzer:
             while self._accept('COMMA'):
                 self.parse_expr()
         self._expect('RPAREN')
+
+    def _line(self):
+        return 1 + sum(1 for k, _ in self.tokens[:self.i] if k == 'NEWLINE')
+
+    def _err(self, message: str) -> None:
+        raise ParseError(message, self._line())
+
