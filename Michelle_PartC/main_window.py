@@ -97,7 +97,21 @@ class MainWindow(QMainWindow):
         # Analyze and Reset Buttons
         button_box = QHBoxLayout()
         self.analyze_button = QPushButton('Analyze')
+        self.analyze_button.setMinimumWidth(150)
+        self.analyze_button.setMinimumHeight(50)
+        self.analyze_button.setStyleSheet('''
+            QPushButton {
+                font-size: 16px;
+            }
+        ''')
         self.reset_button = QPushButton('Reset')
+        self.reset_button.setMinimumWidth(150)
+        self.reset_button.setMinimumHeight(50)
+        self.reset_button.setStyleSheet('''
+            QPushButton {
+                font-size: 16px;
+            }
+        ''')
         button_box.addWidget(self.analyze_button)
         button_box.addWidget(self.reset_button)
         button_box.addStretch(1)

@@ -84,14 +84,15 @@ class SyntaxAnalyzer:
     # This allows nested code block which will be handled properly inside loops or conditionals
     def _parse_statement_list_until(self, end_keywords: Iterable[str]) -> None:
         self._skip_newlines()
+        ends = tuple(end_keywords)
         while True:
             token, value = self._peek()
-            if token == 'KEYWORD' and value in end_keywords:
+            if token == 'KEYWORD' and value in ends:
                 return
             if token is None:
                 return
             self.parse_stmt()
-            self._skip_newlines()
+            self._expect_stmt_terminator(allow_end_keywords=ends)
 
 
     # ---ENTRY POINT---
@@ -104,7 +105,7 @@ class SyntaxAnalyzer:
         self._skip_newlines()
         while self._peek()[0] is not None:
             self.parse_stmt()
-            self._skip_newlines()
+            self._expect_stmt_terminator()
         return True
 
     # Statement        ::= Assignment
@@ -216,10 +217,10 @@ class SyntaxAnalyzer:
     # ListLiteral      ::= "[" [ Number { "," Number } ] "]"
     def parse_list_literal(self) -> None:
         self._expect('LBRACK')
-        if self._peek()[0] == 'NUMBER':
-            self._expect('NUMBER')
+        if self._peek()[0] != 'RBRACK':
+            self.parse_expr()
             while self._accept('COMMA'):
-                self._expect('NUMBER')
+                self.parse_expr()
         self._expect('RBRACK')
 
 
@@ -238,11 +239,13 @@ class SyntaxAnalyzer:
             self.parse_comparison()
             self._expect_keyword('else')
             self.parse_conditional()
+            return
 
     def parse_comparison(self) -> None:
         self.parse_additive()
-        while self._peek()[0] in ('EQEQ', 'NEQ', 'LT', 'LE', 'GT', 'GE'):
-            self.i += 1 # eats comparison operator
+        while (self._accept('EQEQ') or self._accept('NEQ') or
+               self._accept('LT') or self._accept('LE') or
+                self._accept('GT') or self._accept('GE')):
             self.parse_additive()
 
     def parse_additive(self) -> None:
@@ -256,6 +259,13 @@ class SyntaxAnalyzer:
             self.parse_factor()
 
     def parse_factor(self) -> None:
+        if self._accept('PLUS'):
+            self.parse_factor()
+            return
+        if self._accept('MINUS'):
+            self.parse_factor()
+            return
+
         token, _ = self._peek()
         if token in ('IDENT', 'BUILTIN') and self._peek(1)[0] == 'LPAREN':
                 self.parse_call()
@@ -294,4 +304,16 @@ class SyntaxAnalyzer:
 
     def _err(self, message: str) -> None:
         raise ParseError(message, self._line())
+
+    def _expect_stmt_terminator(self, allow_end_keywords: Iterable[str] = ()) -> None:
+        token, value = self._peek()
+        if token == 'NEWLINE':
+            self._skip_newlines()
+            return
+        if token is None:
+            return
+        if token == 'KEYWORD' and value in set(allow_end_keywords):
+            return
+
+        self._err(f'Expected NEWLINE {", ".join(allow_end_keywords)}, got {value!r}')
 
