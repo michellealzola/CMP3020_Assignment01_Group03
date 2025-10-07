@@ -194,9 +194,11 @@ program>	        --> begin <stmt_list> end
 
 <print_stmt>		--> print <string> + <id>
 
-<expression>		--> <term> {(+ | /) <term>}
+<expression>		--> <term> {(+ | -) <term>}
 
-<term>              --> <id> | <list_literal> | <num>
+<term>              --> <factor> {(* | /) <factor>}
+
+<factor>            --> <id> | <list_literal> | <num>
 
 <list_literal>		--> "[" <num_list> "]"
 
