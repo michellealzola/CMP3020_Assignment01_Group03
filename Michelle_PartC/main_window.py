@@ -112,9 +112,22 @@ class MainWindow(QMainWindow):
                 font-size: 16px;
             }
         ''')
+
+        self.docs_link = QLabel('<a href="https://github.com/michellealzola/CMP3020_Assignment01_Group03/blob/master/PartC/serpent_language_documentation.md">Serpent+ Language Documentation</a>')
+        self.docs_link.setStyleSheet('''
+            QLabel{
+                font-size: 18px;
+            }
+        ''')
+        self.docs_link.setTextFormat(Qt.RichText)
+        self.docs_link.setTextInteractionFlags(Qt.TextBrowserInteraction)
+        self.docs_link.setOpenExternalLinks(True)
+        self.docs_link.setCursor(Qt.PointingHandCursor)
+
         button_box.addWidget(self.analyze_button)
         button_box.addWidget(self.reset_button)
-        button_box.addStretch(1)
+        button_box.addStretch()
+        button_box.addWidget(self.docs_link)
 
         left_panel_layout.addWidget(header)
         left_panel_layout.addWidget(self.edit_code)
