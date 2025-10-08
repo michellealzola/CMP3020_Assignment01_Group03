@@ -1,5 +1,3 @@
-
-
 # Part B: Syntax Description
 ## By Group 3, CMPP 3020 BSA, Fall 2025 - BTech
 #### Michelle, Umaya, Altamish, Jazmin, Mihir, Nathan
@@ -182,7 +180,7 @@ optional elements, which reduce the need for many rules, making it easier to fol
 Remove any ambiguity present in the BNF grammar through syntax modifications in the EBNF version.
 
 ```
-program>	        --> begin <stmt_list> end
+<program>	        --> begin <stmt_list> end
 
 <stmt_list>		    --> <stmt> {<stmt>}
 
