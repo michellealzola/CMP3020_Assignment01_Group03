@@ -12,8 +12,7 @@ The application processes the input code, performs a lexical analysis to break i
 Serpent+ was designed as an educational language that blends Python's readability with the structural clarity of explicit block terminators (e.g., endfor, endif). This makes the language's grammar unambiguous and easier to analyze.
 
 ## Full Language Rules: The documentation for the Serpent+ language we created can be found in the: [serpent_language_documentation.md](https://github.com/michellealzola/CMP3020_Assignment01_Group03/blob/master/PartC/serpent_language_documentation.md)
-## Token Lexemes:  The valid lexemes and tokens this program analyzes can be found in the [token_lexeme.txt](https://github.com/michellealzola/CMP3020_Assignment01_Group03/blob/4f30f089707ceb49d89eeb7685bf98a4136f7101/PartC/token_lexeme.txt) 
-file. 
+## Token Lexemes:  The valid lexemes and tokens this program analyzes can be found in the [token_lexeme.txt](https://github.com/michellealzola/CMP3020_Assignment01_Group03/blob/4f30f089707ceb49d89eeb7685bf98a4136f7101/PartC/token_lexeme.txt) file. 
 
 The [average.md](https://github.com/michellealzola/CMP3020_Assignment01_Group03/blob/0601e776ad271492fe6830a901bbb514a0068cf0/PartB/average.md)
 file located in the [PartB](https://github.com/michellealzola/CMP3020_Assignment01_Group03/blob/0601e776ad271492fe6830a901bbb514a0068cf0/PartB) folder contains our pseudocode, BNF and EBNF rules, and parse trees.
