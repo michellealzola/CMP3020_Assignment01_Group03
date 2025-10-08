@@ -23,7 +23,7 @@ The valid lexemes and tokens this program analyzes can be found in the [token_le
 file. 
 
 ### How to Run
-To run the program, download and unzip the SerpentPlus.zip folder which can be found [here](https://1drv.ms/u/c/301e30a28b7b645d/EUgWa7LpCq1DgmZEwm5wq0QB9CI0qdGVp3DKvEJNyO2OlA?e=dLRDaw). Inside contains the SerpentPlus.exe which can be double-clicked to launch.
+To run the program, download and unzip the SerpentPlus.zip folder which can be found [here](https://1drv.ms/u/c/301e30a28b7b645d/EUgWa7LpCq1DgmZEwm5wq0QB9CI0qdGVp3DKvEJNyO2OlA?e=dLRDaw). Inside contains the [SerpentPlus.exe](https://1drv.ms/u/c/301e30a28b7b645d/EUgWa7LpCq1DgmZEwm5wq0QB9CI0qdGVp3DKvEJNyO2OlA?e=dLRDaw) which can be double-clicked to launch.
 
 ### Navigating The GUI
 Within the application, you may insert your Serpent+ code into the given textbox and then press the "Analyze" button, which will return a table of tokens based off of your code. If the syntax passes, you will receive a "Syntax analysis completed successfully," message. 
