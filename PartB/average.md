@@ -122,7 +122,7 @@ Parse Tree
 
 Given further analysis of the problem, here is a parse tree which follows the BNF defined from the "**Grammar Rules For our Program**" section.
 
-![BNF Parse Tree created for Group 3](BNFparseTree_Group3BSA_CMPP3020_V3.png)
+![BNF Parse Tree created by Group 3](BNFparseTree_Group3BSA_CMPP3020_V3.png)
 
 
 ## 4. Examine the parse tree constructed in Step 4 to determine if the BNF grammar is ambiguous.
@@ -216,3 +216,5 @@ program>	        --> begin <stmt_list> end
 
 ## 6. Use the EBNF grammar to reconstruct a parse tree, demonstrating how the revised syntax resolves any ambiguities present in the original BNF grammar.
 Analyze and compare the parse trees from Steps 4 and 7 to understand the impact of syntax modifications on the parse tree structure.
+
+![EBNF Parse Tree created by Group 3](EBNF_ParseTree_Group3BSA_CMPP3020_V2.png)
