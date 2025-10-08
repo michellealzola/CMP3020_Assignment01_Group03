@@ -9,17 +9,17 @@ The application processes the input code, performs a lexical analysis to break i
 
 ## Part B: Syntax Description
 This part contains the theoretical groundwork for the Serpent+ language. The [PartB_Syntax_Description.md](https://github.com/michellealzola/CMP3020_Assignment01_Group03/blob/master/PartB/PartB_Syntax_Description.md)
-file located in the [PartB](https://github.com/michellealzola/CMP3020_Assignment01_Group03/blob/0601e776ad271492fe6830a901bbb514a0068cf0/PartB) folder contains our pseudocode, BNF and EBNF rules, and parse trees.
+file located in the [PartB](https://github.com/michellealzola/CMP3020_Assignment01_Group03/tree/master/PartB) folder contains our pseudocode, BNF and EBNF rules, and parse trees.
 
 ## Part C: Lexical Analyzer & Parser
-This is the main application, a simple lexical analyzer and parser program written in Python to analyze our own Python-inspired language, Serpent+. We created a GUI that allows users to test their Serpent+ code to check for correct syntax and view error messages. All related files are located in the [PartC](https://github.com/michellealzola/CMP3020_Assignment01_Group03/blob/4f30f089707ceb49d89eeb7685bf98a4136f7101/PartC) folder.
+This is the main application, a simple lexical analyzer and parser program written in Python to analyze our own Python-inspired language, Serpent+. We created a GUI that allows users to test their Serpent+ code to check for correct syntax and view error messages. All related files are located in the [PartC](https://github.com/michellealzola/CMP3020_Assignment01_Group03/tree/master/PartC) folder.
 
 ### The Serpent+ Language
 Serpent+ was designed as an educational language that blends Python's readability with the structural clarity of explicit block terminators (e.g., endfor, endif). This makes the language's grammar unambiguous and easier to analyze.
 
 The documentation for the Serpent+ language we created can be found in the: [serpent_language_documentation.md](https://github.com/michellealzola/CMP3020_Assignment01_Group03/blob/master/PartC/serpent_language_documentation.md) file.
 ### Recognized Tokens and Lexemes
-The valid lexemes and tokens this program analyzes can be found in the [token_lexeme.txt](https://github.com/michellealzola/CMP3020_Assignment01_Group03/blob/4f30f089707ceb49d89eeb7685bf98a4136f7101/PartC/token_lexeme.txt) 
+The valid lexemes and tokens this program analyzes can be found in the [token_lexeme.txt](https://github.com/michellealzola/CMP3020_Assignment01_Group03/blob/master/PartC/token_lexeme.txt) 
 file. 
 
 ### How to Run
