@@ -35,8 +35,6 @@ END
 ```
 
 ## 3. Write a Backus-Naur Form (BNF) grammar to describe the syntax of the problem statement.
-Construct a parse tree based on the BNF grammar to visualize the syntactic structure of the problem.
-
 ### Grammar Rules For our Program
 
 ```
@@ -86,6 +84,7 @@ count = 0
 for num in numbers_list:
     sum = sum + num
     count = count + 1
+endfor
 
 #Outside the scope of the loop, we are creating a variable and calculating.
 average = sum / count
@@ -99,7 +98,7 @@ print "The average of the list of numbers is" + average
 Note, comments denoted by # are just to explain the coders thinking when translating from Pseudo to Python and are not going to be parsed for the tree. It is simply to convey an understanding to a new reader to help build familiarity through our chosen Python language for this assignment.
 
 Suppose students have been asked to submit the assignment with no # comments, here is what it could look like:
-#### Python Code submitted to our program without comments
+#### Example of Python Code program without comments
 ```
 numbers_list = [5, 8, 12, 4, 10]
 sum = 0
@@ -114,6 +113,7 @@ average = sum / count
 print "The average of the list of numbers is" + average
 
 ```
+## 4.Parse tree constructed on BNF grammar to visualize the syntactic structure of the problem.
 
 Parse Tree
 ------
@@ -123,7 +123,7 @@ Given further analysis of the problem, here is a parse tree which follows the BN
 ![BNF Parse Tree created by Group 3](BNFparseTree_Group3BSA_CMPP3020_V3.png)
 
 
-## 4. Examine the parse tree constructed in Step 4 to determine if the BNF grammar is ambiguous.
+## 5. Examine the parse tree constructed in Step 4 to determine if the BNF grammar is ambiguous.
 Identify any areas where multiple interpretations are possible.
 Provide examples or scenarios to illustrate potential ambiguities and their implications.
 
@@ -170,7 +170,7 @@ for each example_element in number list
 
 Depending on how the parse tree is determined, the evaluation order can yield different results if the strict operands for addition logic are not evaluated given the num + sum may be parsed differently which may implicate a different result. For example if the program had incorrectly read and example_element + (sum + example element) in a different order (right to left vs left to right). There may be a discrepancy in evaluation given the variation of addition operations used in the cases[1,2,3] above. 
 
-## 5. Rewrite the BNF grammar using Extended Backus-Naur Form (EBNF) to enhance readability and expressiveness.
+## 6. Rewrite the BNF grammar using Extended Backus-Naur Form (EBNF) to enhance readability and expressiveness.
 
 Explain the benefits of using EBNF over traditional BNF, particularly in terms of readability and clarity.
 > The benefits of using EBNF over traditional BNF are that it improves the readability and clarity of the grammar
@@ -212,7 +212,7 @@ Remove any ambiguity present in the BNF grammar through syntax modifications in 
 
 ```
 
-## 6. Use the EBNF grammar to reconstruct a parse tree, demonstrating how the revised syntax resolves any ambiguities present in the original BNF grammar.
+## 7. Use the EBNF grammar to reconstruct a parse tree, demonstrating how the revised syntax resolves any ambiguities present in the original BNF grammar.
 Analyze and compare the parse trees from Steps 4 and 7 to understand the impact of syntax modifications on the parse tree structure.
 
 ![EBNF Parse Tree created by Group 3](EBNF_ParseTree_Group3BSA_CMPP3020_V2.png)
