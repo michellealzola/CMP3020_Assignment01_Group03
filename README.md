@@ -33,7 +33,7 @@ To run the program, download and unzip the SerpentPlus.zip folder which can be f
 ![SerpentPlusGUI_Screenshot.png](SerpentPlusGUI_Screenshot.png)
 
 ## Navigating The GUI
-Within the application, the main function is to insert your code syntax into the text box given to the user, then press the 'Analyze' button and the application will return a token list of the syntax of the code the user provided. If the syntax passes, you will recieve a 'synatax analysis completed successfully', if an error occurs within analyzing the grammer of your syntax, a applicable error will arise and the line of code that spawned the error will be highlighted.
+Within the application, the main function is to insert your code syntax into the text box given to the user, then press the 'Analyze' button and the application will return a token list of the syntax of the code the user provided. If the syntax passes, you will recieve a 'synatax analysis completed successfully', if an error occurs within analyzing the grammer of your syntax, an applicable error will arise and the line of code that spawned the error will be highlighted.
 
 If the user wishes to continue to use the application, simply press the 'reset' button located next to the 'analyze' button and add as much code as you'd like!
 
