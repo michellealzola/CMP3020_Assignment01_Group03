@@ -8,7 +8,7 @@ This project is a simple lexical analyzer and parser for Serpent+, a custom, Pyt
 The application processes the input code, performs a lexical analysis to break it into tokens, and then parses it to verify its syntactic correctness according to the language's grammar.
 
 ## Part B: Syntax Description
-This part contains the theoretical groundwork for the Serpent+ language. The [average.md](https://github.com/michellealzola/CMP3020_Assignment01_Group03/blob/0601e776ad271492fe6830a901bbb514a0068cf0/PartB/average.md)
+This part contains the theoretical groundwork for the Serpent+ language. The [PartB_Syntax_Description.md](https://github.com/michellealzola/CMP3020_Assignment01_Group03/blob/master/PartB/PartB_Syntax_Description.md)
 file located in the [PartB](https://github.com/michellealzola/CMP3020_Assignment01_Group03/blob/0601e776ad271492fe6830a901bbb514a0068cf0/PartB) folder contains our pseudocode, BNF and EBNF rules, and parse trees.
 
 ## Part C: Lexical Analyzer & Parser
