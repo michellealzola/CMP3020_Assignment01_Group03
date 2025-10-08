@@ -20,7 +20,10 @@ file.
 The valid lexemes and tokens this program analyzes can be found in the [token_lexeme.txt](https://github.com/michellealzola/CMP3020_Assignment01_Group03/blob/4f30f089707ceb49d89eeb7685bf98a4136f7101/PartC/token_lexeme.txt) 
 file. 
 
-### How to Run the Program
+### Serpent+ GUI Preview
+![SerpentPlusGUI_Screenshot.png](SerpentPlusGUI_Screenshot.png)
+
+### How to Run
 To run the program, download and unzip the SerpentPlus.zip folder which can be found _____. Inside contains the SerpentPlus.exe which can be double-clicked to launch.
 
 ## Built With
