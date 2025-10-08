@@ -42,7 +42,3 @@ If the user wishes to continue to use the application, simply press the 'reset' 
 [Python 3.13.7](https://www.python.org/downloads/release/python-3137/) (Python Version)\
 [PyCharm](https://www.jetbrains.com/pycharm/) (Python IDE)\
 [PySide6](https://pypi.org/project/PySide6/) (GUI)
-
-
-### Serpent+ GUI Preview
-![SerpentPlusGUI_Screenshot.png](SerpentPlusGUI_Screenshot.png)
